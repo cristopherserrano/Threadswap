@@ -1,0 +1,33 @@
+<html>
+<body>
+<h2>Search item by color:</h2>
+<BR>
+<form action="ClothingInsert.php" method="post">
+color: <input type="text" name="color" value='<?php echo htmlentities($color) ?>'>
+<input type="Submit">
+</form>
+<?php
+	if(isset($_POST['Submit'])) {
+		$color = filter_input(INPUT_POST, "color");
+		$sql = $mysqli->prepare("SELECT clothingID FROM clothing WHERE color='$color'");
+		$sql->execute();
+		$sql->store_result();
+		$sql->bind_result($clothingID);
+		$sql->fetch();
+?>
+<BR>
+<h2>Search item by size:</h2>
+<BR>
+<form action="DressesInsert.php" method="post">
+size: <input type="text" name="Size">
+<input type="Submit">
+</form>
+<BR>
+<h2>Search item by brand:</h2>
+<BR>
+<form action="DressesInsert.php" method="post">
+size: <input type="text" name="brand">
+<input type="Submit">
+</form>
+</body>
+</html> 
